@@ -1,0 +1,17 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #EEF9BF;
+}
+
+.main_title {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    width: 100%;
+}
+
+.main_title h1 {
+    font-size: 56px;
+    font-weight: 700;
+    color: #75B79E;
+}
