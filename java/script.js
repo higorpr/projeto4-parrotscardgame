@@ -9,7 +9,20 @@ function cardsNumber() {
         `Rules for number of cards:
         - There must be an even number of cards;
         - The number of cards in a game must be between 4 and 14.
-        
-        Please pick a number of cards within these conditions:`)
+
+        Please pick a number of cards within these conditions:`);
     }
+
+    let list = document.querySelector('.card_holder');
+
+    for (i=0; i < n_cards; i++) {
+        list.innerHTML = list.innerHTML + 
+        `<li class="card">
+            <figure>
+                <img src="images/front.png" alt="">
+            </figure>
+        </li>`
+    }
+
+
 }
