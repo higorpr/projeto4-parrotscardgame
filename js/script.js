@@ -89,7 +89,6 @@ function rotateCard(card) {
             `<figure>
                 <img src="${gifList[cardObjs[idx].cardTag]}" alt="">
             </figure>`;
-
         // 
         // const targetClass = card.classList[1];
         // console.log(targetClass);
