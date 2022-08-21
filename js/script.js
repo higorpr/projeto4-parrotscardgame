@@ -74,7 +74,6 @@ function cardDisplay() {
 }
 
 cardDisplay();
-console.log(cardObjs); // DEBUG
 
 function randomizer() {
     /**
@@ -122,7 +121,6 @@ function rotateCard(card) {
             }
         }
     }
-    console.log(playsCount);
 } // End rotateCard
 
 function unturnCards() { // Unturn cards, erase arrays and change Object properties
