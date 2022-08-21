@@ -39,7 +39,7 @@ main {
     float: left;
     margin: 0 17px;
     margin-bottom: 34px;
-    transition: all 1s;
+    transition: all 1000ms;
 }
 
 .card_transition {
