@@ -12,7 +12,9 @@ let playsCount = 0; // Number of Plays
 let nTurned = 0; // Number of current turned cards (gif side showing)
 let tagTurned = []; // Array for storing the gif tag for each turned card.
 let idxTurned = []; // Array for storing the turned cards index in the array of card Objects.
-let nTrues = 0; // Number of accumulated turned cards
+let nTrues = 0; // Number of accumulated turned cards+
+let timer;
+let time = 0;
 
 // Functions
 function cardDisplay() {
@@ -71,6 +73,9 @@ function cardDisplay() {
     for (i = 0; i < n_cards; i++) {
         cardObjs.push({ cardClass: `number${i}`, cardTag: cards_array[i], turned: false });
     }
+
+    // Start the timer
+    timer = setInterval(updateCounter, 10);
 }
 
 function randomizer() {
@@ -119,7 +124,7 @@ function rotateCard(card) {
             }
         }
     }
-} // End rotateCard
+}
 
 function unturnCards() { // Unturn cards, erase arrays and change Object properties
     /**
@@ -156,6 +161,7 @@ function matchingCards() {
     nTrues = nTrues + 2;
     if (n_cards === nTrues) {
         const myTimeOut = setTimeout(resetAll, 1000);
+        clearInterval(timer);
     }
 }
 
@@ -164,25 +170,43 @@ function resetAll() {
      * Function that resets the game, clearing the card rows and all variables.
      */
 
-    alert(`You won in ${playsCount} plays!`);
+    alert(`You won in ${playsCount} plays and in ${time.toFixed(2)} seconds!`);
 
     const reset = confirm('Would you like to play again?');
     if (reset === true) {
+        // Reset global variables
         cardObjs = []; 
         cards_array = [];
         playsCount = 0;
         nTurned = 0;
         tagTurned = [];
         idxTurned = []; 
-        nTrues = 0; 
+        nTrues = 0;
+        time = 0;
+        timer = undefined;
 
+        // Clear page
         const rows = document.querySelectorAll('.card_holder');
         for (i = 0; i < rows.length; i++) {
             rows[i].innerHTML = '';
         }
-        
+
+        // Reset timer
+        const counter = document.querySelector('.timer');
+        counter.innerHTML = time.toFixed(2);
+
+        // Reset the game
         cardDisplay();
     }
 
 }
 
+function updateCounter() {
+    /**
+     * Function that updates the counter and 
+     */
+
+    const counter = document.querySelector('.timer')
+    time += 0.01;
+    counter.innerHTML = time.toFixed(2);
+}
