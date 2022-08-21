@@ -73,8 +73,6 @@ function cardDisplay() {
     }
 }
 
-cardDisplay();
-
 function randomizer() {
     /**
      * This function serves as the randomizer function
@@ -147,7 +145,8 @@ function unturnCards() { // Unturn cards, erase arrays and change Object propert
 
 function matchingCards() {
     /**
-     * This function checks if the game ended when 2 matching cards are turned.
+     * This function checks if the game ended when 2 matching cards are turned and
+     * ends the game when all pairs are found.
      */
 
     tagTurned = [];
@@ -156,8 +155,33 @@ function matchingCards() {
     playsCount++;
     nTrues = nTrues + 2;
     if (n_cards === nTrues) {
-        const myTimeOut = setTimeout(() => {alert(`You won in ${playsCount} plays!`)}, 1000);
+        const myTimeOut = setTimeout(resetAll, 1000);
     }
 }
 
+function resetAll() {
+    /**
+     * Function that resets the game, clearing the card rows and all variables.
+     */
+
+    alert(`You won in ${playsCount} plays!`);
+
+    const reset = confirm('Would you like to play again?');
+    if (reset === true) {
+        cardObjs = []; 
+        cards_array = [];
+        playsCount = 0;
+        nTurned = 0;
+        tagTurned = [];
+        idxTurned = []; 
+        nTrues = 0; 
+
+        const rows = document.querySelectorAll('.card_holder');
+        for (i = 0; i < rows.length; i++) {
+            rows[i].innerHTML = '';
+        }
+        cardDisplay();
+    }
+
+}
 
