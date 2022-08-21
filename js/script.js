@@ -114,7 +114,7 @@ function rotateCard(card) {
         if (nTurned === 2) {
 
             if (tagTurned[0] !== tagTurned[1]) { // Case cards are NOT a match
-                const timeOut = setTimeout(unturnCards, 1000);
+                const timeOut = setTimeout(unturnCards, 2000);
 
             } else { // Case cards ARE a match
                 const timeOut = setTimeout(matchingCards, 0)
