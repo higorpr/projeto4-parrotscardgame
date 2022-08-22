@@ -74,17 +74,40 @@ function cardDisplay() {
         cardObjs.push({ cardClass: `number${i}`, cardTag: cards_array[i], turned: false });
     }
 
+    // Showing cards before game start:
+    showBegin();
+
     // Start the timer
     timer = setInterval(updateCounter, 10);
 }
 
-function randomizer() {
+function showBegin() {
     /**
-     * This function serves as the randomizer function
-     * to be used in Array.sort() methods.
+     * This function turns all cards and then flips them back.
      */
 
-    return Math.random() - 0.5;
+    nTurned = 2; // To avoid clicks
+
+    for (i = 0; i < cardObjs.length; i++) {
+        const card = document.querySelector(`.${cardObjs[i].cardClass}`);
+        card.innerHTML =
+            `<figure>
+                <img src="${gifList[cardObjs[i].cardTag]}" alt="">
+            </figure>`;
+    }
+
+    const myTimeout = setTimeout(hideAllBegin, 2000);
+    nTurned = 0;
+}
+
+function hideAllBegin() {    
+    for (i = 0; i < cardObjs.length; i++) {
+        const card = document.querySelector(`.${cardObjs[i].cardClass}`);
+        card.innerHTML =
+            `<figure>
+                <img src="images/front.png" alt="">
+            </figure>`;
+    }
 }
 
 function rotateCard(card) {
@@ -126,7 +149,7 @@ function rotateCard(card) {
     }
 }
 
-function unturnCards() { // Unturn cards, erase arrays and change Object properties
+function unturnCards() {
     /**
      * This function unturns cards,
      * erases the arrays tagTurned and idxTurned,
@@ -175,12 +198,12 @@ function resetAll() {
     const reset = confirm('Would you like to play again?');
     if (reset === true) {
         // Reset global variables
-        cardObjs = []; 
+        cardObjs = [];
         cards_array = [];
         playsCount = 0;
         nTurned = 0;
         tagTurned = [];
-        idxTurned = []; 
+        idxTurned = [];
         nTrues = 0;
         time = 0;
         timer = undefined;
@@ -203,10 +226,27 @@ function resetAll() {
 
 function updateCounter() {
     /**
-     * Function that updates the counter and 
+     * Function that updates the counter on the main game page.
      */
 
     const counter = document.querySelector('.timer')
     time += 0.01;
     counter.innerHTML = time.toFixed(2);
+}
+
+function randomizer() {
+    /**
+     * This function serves as the randomizer function
+     * to be used in Array.sort() methods.
+     */
+
+    return Math.random() - 0.5;
+}
+
+function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+        currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
 }
