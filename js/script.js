@@ -193,7 +193,7 @@ function resetAll() {
      * Function that resets the game, clearing the card rows and all variables.
      */
 
-    alert(`You won in ${playsCount} plays and in ${time.toFixed(2)} seconds!`);
+    alert(`You won in ${2 * playsCount} plays and in ${time.toFixed(2)} seconds!`);
 
     const reset = confirm('Would you like to play again?');
     if (reset === true) {
